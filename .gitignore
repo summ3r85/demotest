@@ -1,0 +1,8 @@
+/out/scr
+/out
+/DemoTests/bin/Release
+/DemoTests/bin/Debug
+/.vs/DemoTests/v14
+/DemoTests/obj/Debug
+/DemoTests/obj/Release
+/packages
