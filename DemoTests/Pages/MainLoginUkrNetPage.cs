@@ -40,7 +40,7 @@ namespace DemoTests.Pages
         private bool IsInvalidUserPwdMessageVisible()
         {
             List<IWebElement> list = Driver.DriverInstance.FindElements(By.XPath("/html/body/div/div/div/form/div[1]")).ToList();
-            return (list.Count > 0) && (list[0].Text.Contains("Логін або пароль вказано невірно.") || list[0].Text.Contains("Login or password is invalid"));
+            return (list.Count > 0) && (list[0].Text.Contains("Логін або пароль вказано невірно.") || list[0].Text.Contains("Login or password"));
         }
 
         
