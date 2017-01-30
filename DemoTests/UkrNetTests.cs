@@ -26,11 +26,13 @@ namespace DemoTests
             Assert.IsTrue(page.IsInvalidUserOrPwdMessageVisible);
             
         }
-        [TestCaseSource(typeof(CredentialsData), "testData")]
+        [TestCaseSource(typeof(CredentialsData), "TestData")]
         public void LoginToUkrNetValidPassword_AreEqueal_Test(Credential credential)
         {
             MainEmailUkrNetPage page = LoginHelper.LogInUkrNet(credential);
             Assert.AreEqual(page.EmailLabelText, string.Concat(credential.username,"@ukr.net"));
+            LoginHelper.LogOutUkrNet();
+
         }
     }
 
@@ -42,7 +44,8 @@ namespace DemoTests
         [TestCase("Хостинг",6)]
         public void FindEmailBySubject_AreEqual_Test(string searchSubject, int resultCount)
         {
-            MainEmailUkrNetPage page = LoginHelper.LogInUkrNet(CredentialsData.ValidCredentials).SearchEmails(searchSubject, TimeSpan.FromSeconds(2));
+            MainEmailUkrNetPage page = LoginHelper.LogInUkrNet(CredentialsData.ValidCredentials)
+                .SearchEmails(searchSubject, TimeSpan.FromSeconds(2));
             Assert.AreEqual(resultCount, page.FoundEmailCountSpan);
             LoginHelper.LogOutUkrNet();
         }
@@ -58,7 +61,7 @@ namespace DemoTests
             EmailSentUkrNetPage page =
                 LoginHelper.LogInUkrNet(CredentialsData.ValidCredentials)
                     .ClickNewEmailLabel()
-                    .FullEmailFields("", "test subject", "message11")
+                    .FillEmailFields("", "test subject", "message11")
                     .SendButtonClick();
             Thread.Sleep(1000);
             Assert.AreEqual("Невірно заповнене поле Кому", page.PopUpMessageText());
@@ -76,7 +79,7 @@ namespace DemoTests
             EmailSentUkrNetPage page =
                 LoginHelper.LogInUkrNet(CredentialsData.ValidCredentials)
                     .ClickNewEmailLabel()
-                    .FullEmailFields("summ3r@ukr.net", subject, "message")
+                    .FillEmailFields("summ3r@ukr.net", subject, "message")
                     .SendButtonClick();
             Thread.Sleep(5000);
             Assert.True(page.Title.Contains("Відправлено"), page.Title);

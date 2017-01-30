@@ -76,6 +76,8 @@ namespace DemoTests.Framework
                     var screenshot = ((ITakesScreenshot) Driver.DriverInstance).GetScreenshot();
                     fs.Write(screenshot.AsByteArray, 0, screenshot.AsByteArray.Length);
                 }
+                Console.WriteLine("##teamcity[testFailed name='{0}' message='<a href='file://C:/project/{1}' details='sreenshot'", TestContext.CurrentContext.Test.MethodName, outputFileName );
+
             }
             //LoginHelper.LogOutUkrNet();
             Driver.DriverInstance.Manage().Cookies.DeleteAllCookies();

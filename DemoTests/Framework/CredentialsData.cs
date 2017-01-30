@@ -7,25 +7,31 @@ namespace DemoTests.Framework
 {
     public static class CredentialsData
     {
-        public static IEnumerable testData
+        private static IEnumerable ms_Testdata;
+        public static IEnumerable TestData
         {
-            get
+            get { return ms_Testdata; }
+            private set
             {
-                return GetPasswords();
+                if (value != null) ms_Testdata = value;
             }
-
         }
 
-        private static Credential m_LazyValidCred;
+        private static Credential ms_ValidCredential;
         public static Credential ValidCredentials
         {
-            get { return m_LazyValidCred; }
-            set { m_LazyValidCred = value; }
+            get { return ms_ValidCredential; }
+            private set
+            {
+                if (value != null) ms_ValidCredential = value;
+            }
         }
 
         static CredentialsData()
         {
-            ValidCredentials = GetPasswords().FirstOrDefault();
+            var testdata = GetPasswords();
+            ValidCredentials = testdata.FirstOrDefault();
+            TestData = testdata;
         }
         private static IEnumerable<Credential> GetPasswords()
         {

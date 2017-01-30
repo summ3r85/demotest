@@ -66,7 +66,8 @@ namespace DemoTests.Framework
                 if (m_DriverInstance == null)
                 {
                     m_DriverInstance =
-                        new FirefoxDriver(FirefoxDriverService.CreateDefaultService(@"C:\project\drivers\"));
+                        new FirefoxDriver(FirefoxDriverService.CreateDefaultService(@"C:\project\drivers\"), new FirefoxOptions(), TimeSpan.FromSeconds(120));
+                    //new FirefoxDriver());
                 }
                 return m_DriverInstance;
             }
