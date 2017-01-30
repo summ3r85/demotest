@@ -30,7 +30,7 @@ namespace DemoTests.Pages
 
         }
 
-        public NewEmailUkrNetPage FullEmailFields(string toField, string subject, string messageBody)
+        public NewEmailUkrNetPage FillEmailFields(string toField, string subject, string messageBody)
         {
             SetTextBox(ToFieldInputElement, toField);
             SetTextBox(SubjectInputElement, subject);
